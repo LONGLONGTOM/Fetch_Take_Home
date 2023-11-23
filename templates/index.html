@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scanned Receipts Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .highlight {
+            color: white; 
+        }
+        .content {
+            padding: 20px 0;
+            background-color: #fff;
+        }
+        .description {
+            margin: 20px 0;
+            font-size: 24px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><span class="highlight">Scanned</span> Receipts Analysis</h1>
+        </div>
+    </header>
+
+    <div class="container content">
+        <div class="description">
+            Welcome to the Scanned Receipts Analysis page. Here you can view detailed visualizations and analysis of scanned receipt data, including trends and patterns over day and month.
+        </div>
+        <h2>Monthly Data Visualization</h2>
+        <img src="{{ monthly_plot_url }}" alt="Monthly Data">
+
+        <h2>Daily Data Visualization</h2>
+        <img src="{{ daily_plot_url }}" alt="Daily Data">
+    </div>
+</body>
+</html>
+
+
+
+
