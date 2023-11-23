@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from statsmodels.tsa.arima.model import ARIMAResults
+import calendar
 
 app = Flask(__name__)
 sarima_result = ARIMAResults.load('sarima_result.pkl')
@@ -73,13 +74,22 @@ def index():
     # Creating a DataFrame for the forecast
     forecast_df = pd.DataFrame({'Date': forecast_index, 'Forecast': forecast_values})
 
-    # Monthly data
-    monthly_plot_url = create_plot(data, forecast_df,'Monthly Scanned Receipts: 2021 and 2022 Forecasted', 'Month', 'Number of Receipts')
-
     # Daily data
     daily_plot_url = create_plot(data, forecast_df,'Daily Scanned Receipts: 2021 and 2022 Forecasted', 'Day', 'Number of Receipts')
+    
+    # Monthly data
+    forecast_df['Month'] = forecast_df['Date'].dt.strftime('%B')
+    # Mapping month names to their chronological order
 
-    return render_template('index.html', monthly_plot_url=monthly_plot_url, daily_plot_url=daily_plot_url)
+    monthly_forecast_2022 = forecast_df.groupby('Month')['Forecast'].sum().reset_index()
+    month_to_num = {month: index for index, month in enumerate(calendar.month_name) if month}
+    # Sort the forecast DataFrame by month
+    monthly_forecast_2022['MonthNum'] = monthly_forecast_2022['Month'].map(month_to_num)
+    monthly_forecast_2022.sort_values('MonthNum', inplace=True)
+    monthly_forecast_2022.drop('MonthNum', axis=1, inplace=True)
+    monthly_plot_url = create_plot(data, forecast_df,'Monthly Scanned Receipts: 2021 and 2022 Forecasted', 'Month', 'Number of Receipts')
+
+    return render_template('index.html', monthly_plot_url=monthly_plot_url, daily_plot_url=daily_plot_url, monthly_forecast_2022=monthly_forecast_2022.to_dict(orient='records'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
