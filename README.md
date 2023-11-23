@@ -3,12 +3,14 @@ Hi, thank you for the opportunity and welcome!
 To run my program, you con do the following:
 1. Download the code from github, run web.py. You will see the link for a webpage. Copy the link to a brower and see the webpage.
 2. Download the code from github, run this command:
+   
    docker build -t my-flask-app .
    
    docker run -p 5000:5000 my-flask-app
    
    Copy the link generated to the browser and see the webpage.
-4. run the follwing command:
+3. run the follwing command:
+   
    docker pull harveyyliu/my-flask-app:tag
    
    docker run -p 5000:5000 harveyyliu/my-flask-app:tag
