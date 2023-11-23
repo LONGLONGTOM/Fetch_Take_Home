@@ -1,6 +1,6 @@
 # Fetch_Take_Home
 Hi, thank you for the opportunity and welcome!
-To run my program, you con do the following:
+To run my program, you can do any of the three following:
 1. Download the code from github, run web.py. You will see the link for a webpage. Copy the link to a brower and see the webpage.
 2. Download the code from github, run this command:
    
