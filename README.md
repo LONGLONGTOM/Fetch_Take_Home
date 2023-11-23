@@ -16,7 +16,6 @@ To run my program, you con do the following:
    docker run -p 5000:5000 harveyyliu/my-flask-app:tag
    
    Copy the link generated to the browser and see the webpage.
-There might be two links generated. Please try another if the first did not work.
 
 Here is my explantion for my work.
 In Model_Train.ipynb, I perform data visualizations, stationary and seasonlity check to examine structures of the data, and decisde SARIMA to be the ideal model.
